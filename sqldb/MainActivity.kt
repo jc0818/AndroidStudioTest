@@ -67,5 +67,20 @@ class MainActivity : AppCompatActivity() {
             }
             helper.writableDatabase.close()
         }
+
+        binding.button3.setOnClickListener{
+            val helper = DBHelper(this)
+
+            val sql="""
+                update TestTable set textData = ? where idx = ?
+            """.trimIndent()
+
+            val arg1 = arrayOf("믄자열3", "1")
+
+            helper.writableDatabase.execSQL(sql,arg1)
+            helper.writableDatabase.close()
+
+            binding.textview.text = "수정완료"
+        }
     }
 }
