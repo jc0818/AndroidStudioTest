@@ -82,5 +82,19 @@ class MainActivity : AppCompatActivity() {
 
             binding.textview.text = "수정완료"
         }
+
+         binding.button4.setOnClickListener{
+            val helper = DBHelper(this)
+
+            val sql = """
+                delete from TestTable where idx = ?
+            """.trimIndent()
+            val arg1 = arrayOf("1")
+            helper.writableDatabase.execSQL(sql,arg1)
+            helper.writableDatabase.close()
+
+            binding.textview.text = "삭제완료"
+
+        }
     }
 }
